@@ -56,3 +56,4 @@ function cacheHabilitado() {
 function logsHabilitados() {
   return TITANIUM.LOGS === true;
 }
+
