@@ -5,16 +5,28 @@
  *
  ******************************************************************/
 
+/**
+ * Inicializa el sistema y valida que la API responda.
+ */
 function iniciarCore() {
 
   logInfo("CORE", "Iniciando Titanium X");
 
   inicializarTitanium();
 
-  return apiPing();
+  const ping = apiPing();
+
+  if (!ping) {
+    throw new Error("No fue posible inicializar Titanium.");
+  }
+
+  return ping;
 
 }
 
+/**
+ * Devuelve el estado consolidado del núcleo.
+ */
 function obtenerEstadoCore() {
 
   return {
@@ -29,6 +41,9 @@ function obtenerEstadoCore() {
 
 }
 
+/**
+ * Ejecuta el motor principal.
+ */
 function ejecutarMotor() {
 
   iniciarProceso("Motor Principal");
@@ -43,9 +58,9 @@ function ejecutarMotor() {
 
   } catch (e) {
 
-    registrarError();
+    registrarError(e);
 
-    logError("CORE", e.toString());
+    logError("CORE", e.stack || e.toString());
 
     throw e;
 
@@ -53,6 +68,9 @@ function ejecutarMotor() {
 
 }
 
+/**
+ * Test rápido de salud del sistema.
+ */
 function probarSistema() {
 
   return {
