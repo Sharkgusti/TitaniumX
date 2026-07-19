@@ -35,7 +35,7 @@ function cacheLeer(clave) {
 
     const dato = CACHE.get(String(clave));
 
-    if (dato === null) return null;
+    if (!dato) return null;
 
     return JSON.parse(dato);
 
@@ -75,7 +75,7 @@ function cacheExiste(clave) {
 
 function cacheLimpiar() {
 
-  // Apps Script no permite vaciar completamente ScriptCache.
+  // Apps Script no permite vaciar todo el ScriptCache.
 
   logInfo("CACHE", "Limpieza solicitada");
 
