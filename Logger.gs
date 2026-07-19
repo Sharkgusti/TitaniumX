@@ -18,15 +18,21 @@ const LOGGER = {
 };
 
 function logInfo(modulo, mensaje) {
+
   registrarLog("INFO", modulo, mensaje);
+
 }
 
 function logWarn(modulo, mensaje) {
+
   registrarLog("WARN", modulo, mensaje);
+
 }
 
 function logError(modulo, mensaje) {
+
   registrarLog("ERROR", modulo, mensaje);
+
 }
 
 function registrarLog(nivel, modulo, mensaje) {
@@ -37,25 +43,28 @@ function registrarLog(nivel, modulo, mensaje) {
 
     fecha: new Date(),
 
-    nivel,
+    nivel: nivel,
 
-    modulo,
+    modulo: modulo,
 
-    mensaje
+    mensaje: mensaje
 
   };
 
   LOGGER.historial.push(registro);
 
   if (LOGGER.historial.length > LOGGER.maxHistorial) {
+
     LOGGER.historial.shift();
+
   }
+
+  const texto =
+    "[" + nivel + "] [" + modulo + "] " + mensaje;
 
   if (LOGGER.mostrarConsola) {
 
-    console.log(
-      `[${nivel}] [${modulo}] ${mensaje}`
-    );
+    console.log(texto);
 
   }
 
