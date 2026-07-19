@@ -11,6 +11,8 @@ const LOGGER = {
 
   mostrarConsola: true,
 
+  maxHistorial: 1000,
+
   historial: []
 
 };
@@ -41,18 +43,33 @@ function registrarLog(nivel, modulo, mensaje) {
 
     fecha: new Date(),
 
-    nivel: nivel,
+    nivel,
 
-    modulo: modulo,
+    modulo,
 
-    mensaje: mensaje
+    mensaje: String(mensaje)
 
   };
 
   LOGGER.historial.push(registro);
 
+  if (LOGGER.historial.length > LOGGER.maxHistorial) {
+    LOGGER.historial.shift();
+  }
+
   const texto =
-    "[" + nivel + "] [" + modulo + "] " + mensaje;
+    "[" +
+    Utilities.formatDate(
+      registro.fecha,
+      Session.getScriptTimeZone(),
+      "yyyy-MM-dd HH:mm:ss"
+    ) +
+    "] [" +
+    nivel +
+    "] [" +
+    modulo +
+    "] " +
+    registro.mensaje;
 
   if (LOGGER.mostrarConsola) {
 
@@ -64,12 +81,12 @@ function registrarLog(nivel, modulo, mensaje) {
 
 function obtenerLogs() {
 
-  return LOGGER.historial;
+  return [...LOGGER.historial];
 
 }
 
 function limpiarLogs() {
 
-  LOGGER.historial = [];
+  LOGGER.historial.length = 0;
 
 }
