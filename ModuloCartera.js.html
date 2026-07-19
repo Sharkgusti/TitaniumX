@@ -1,0 +1,25 @@
+const ModuloCartera = (() => {
+
+    async function mostrar() {
+
+        const contenedor = document.getElementById("tx-main");
+
+        if (!contenedor) return;
+
+        contenedor.innerHTML = `
+            <h2>Cartera</h2>
+
+            <div id="cartera-resumen"></div>
+
+            <div id="cartera-detalle"></div>
+        `;
+
+    }
+
+    return {
+
+        mostrar
+
+    };
+
+})();

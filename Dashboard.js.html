@@ -1,0 +1,68 @@
+/******************************************************************
+ *
+ * TITANIUM X
+ * DASHBOARD
+ *
+ ******************************************************************/
+
+const Dashboard = (() => {
+
+    function mostrar() {
+
+        console.log("Dashboard");
+
+        const datos = Titanium.datos;
+
+        if (!datos) return;
+
+        const app = document.getElementById("app");
+
+        if (!app) return;
+
+        app.innerHTML = `
+
+            <div class="tx-dashboard">
+
+                <h1>TITANIUM X</h1>
+
+                <h2>Panel Principal</h2>
+
+                <hr>
+
+                <div class="tx-kpi">
+
+                    <h3>Valor Total</h3>
+
+                    <p>USD ${datos.kpis.valorTotal.usd.toLocaleString()}</p>
+
+                </div>
+
+                <div class="tx-kpi">
+
+                    <h3>TIR Total</h3>
+
+                    <p>${(datos.kpis.tirTotal * 100).toFixed(2)}%</p>
+
+                </div>
+
+                <div class="tx-kpi">
+
+                    <h3>Liquidez</h3>
+
+                    <p>USD ${datos.kpis.liquidezDisponible.toLocaleString()}</p>
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+    return {
+
+        mostrar
+
+    };
+
+})();

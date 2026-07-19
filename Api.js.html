@@ -1,0 +1,52 @@
+/******************************************************************
+ *
+ * TITANIUM X
+ * APP PRINCIPAL
+ *
+ ******************************************************************/
+
+const Titanium = {
+
+    iniciado: false,
+
+    datos: null,
+
+    async iniciar() {
+
+        console.log("Iniciando Titanium X...");
+
+        await this.cargarDatos();
+
+        Router.ir("dashboard");
+
+        this.iniciado = true;
+
+    },
+
+    async cargarDatos() {
+
+        try {
+
+            this.datos = await Api.llamar("ejecutarMotor");
+
+            if (typeof this.datos === "string") {
+
+                this.datos = JSON.parse(this.datos);
+
+            }
+
+        } catch (e) {
+
+            console.error(e);
+
+        }
+
+    }
+
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    Titanium.iniciar();
+
+});

@@ -1,0 +1,23 @@
+const ModuloCedears = (() => {
+
+    async function mostrar() {
+
+        const contenedor = document.getElementById("tx-main");
+
+        if (!contenedor) return;
+
+        contenedor.innerHTML = `
+            <h2>CEDEARs</h2>
+
+            <div id="cedears-resumen"></div>
+
+            <div id="cedears-tabla"></div>
+        `;
+
+    }
+
+    return {
+        mostrar
+    };
+
+})();

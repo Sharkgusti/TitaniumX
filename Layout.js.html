@@ -1,0 +1,42 @@
+/******************************************************************
+ *
+ * TITANIUM X
+ * LAYOUT
+ *
+ ******************************************************************/
+
+const Layout = (() => {
+
+    function construir() {
+
+        document.body.innerHTML = `
+
+            <div id="tx-layout">
+
+                <aside id="sidebar"></aside>
+
+                <main id="contenido">
+
+                    <header id="header"></header>
+
+                    <section id="app"></section>
+
+                </main>
+
+            </div>
+
+        `;
+
+        Sidebar.mostrar();
+
+        Header.mostrar();
+
+    }
+
+    return {
+
+        construir
+
+    };
+
+})();

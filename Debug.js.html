@@ -1,0 +1,33 @@
+const Debug = (() => {
+
+    let activo = true;
+
+    function log(...args){
+
+        if(activo){
+
+            console.log(...args);
+
+        }
+
+    }
+
+    function desactivar(){
+
+        activo=false;
+
+    }
+
+    function activar(){
+
+        activo=true;
+
+    }
+
+    return{
+        log,
+        activar,
+        desactivar
+    };
+
+})();

@@ -1,0 +1,77 @@
+/******************************************************************
+ *
+ * TITANIUM X
+ * ROUTER
+ *
+ ******************************************************************/
+
+const Router = (() => {
+
+    let vistaActual = "";
+
+    function ir(vista) {
+
+        vistaActual = vista;
+
+        console.log("Vista:", vista);
+
+        switch (vista) {
+
+            case "dashboard":
+                Dashboard.mostrar();
+                break;
+
+            case "cartera":
+                ModuloCartera.mostrar();
+                break;
+
+            case "bonos":
+                ModuloBonos.mostrar();
+                break;
+
+            case "cedears":
+                ModuloCedears.mostrar();
+                break;
+
+            case "acciones":
+                ModuloAcciones.mostrar();
+                break;
+
+            case "etf":
+                ModuloETF.mostrar();
+                break;
+
+            case "operaciones":
+                ModuloOperaciones.mostrar();
+                break;
+
+            case "reportes":
+                ModuloReportes.mostrar();
+                break;
+
+            case "configuracion":
+                ModuloConfiguracion.mostrar();
+                break;
+
+            default:
+                Dashboard.mostrar();
+
+        }
+
+    }
+
+    function actual() {
+
+        return vistaActual;
+
+    }
+
+    return {
+
+        ir,
+
+        actual
+
+    };
+
+})();

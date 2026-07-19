@@ -1,0 +1,21 @@
+const ModuloConfiguracion = (() => {
+
+    async function mostrar() {
+
+        const contenedor = document.getElementById("tx-main");
+
+        if (!contenedor) return;
+
+        contenedor.innerHTML = `
+            <h2>Configuración</h2>
+
+            <div id="config-panel"></div>
+        `;
+
+    }
+
+    return {
+        mostrar
+    };
+
+})();

@@ -1,0 +1,27 @@
+const Storage = (() => {
+
+    function guardar(clave, valor) {
+        localStorage.setItem(clave, JSON.stringify(valor));
+    }
+
+    function leer(clave) {
+
+        const dato = localStorage.getItem(clave);
+
+        if (!dato) return null;
+
+        return JSON.parse(dato);
+
+    }
+
+    function borrar(clave) {
+        localStorage.removeItem(clave);
+    }
+
+    return {
+        guardar,
+        leer,
+        borrar
+    };
+
+})();

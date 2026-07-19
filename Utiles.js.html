@@ -1,0 +1,36 @@
+const Utiles = (() => {
+
+    function uuid() {
+
+        return crypto.randomUUID();
+
+    }
+
+    function hoy() {
+
+        return new Date().toISOString();
+
+    }
+
+    function redondear(numero, decimales = 2) {
+
+        return Number(numero.toFixed(decimales));
+
+    }
+
+    function porcentaje(valor,total){
+
+        if(total===0) return 0;
+
+        return (valor/total)*100;
+
+    }
+
+    return{
+        uuid,
+        hoy,
+        redondear,
+        porcentaje
+    };
+
+})();

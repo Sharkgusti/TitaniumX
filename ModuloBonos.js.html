@@ -1,0 +1,25 @@
+const ModuloBonos = (() => {
+
+    async function mostrar() {
+
+        const contenedor = document.getElementById("tx-main");
+
+        if (!contenedor) return;
+
+        contenedor.innerHTML = `
+            <h2>Bonos</h2>
+
+            <div id="bonos-resumen"></div>
+
+            <div id="bonos-tabla"></div>
+
+            <div id="bonos-flujos"></div>
+        `;
+
+    }
+
+    return {
+        mostrar
+    };
+
+})();

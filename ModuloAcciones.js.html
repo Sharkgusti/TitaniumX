@@ -1,0 +1,23 @@
+const ModuloAcciones = (() => {
+
+    async function mostrar() {
+
+        const contenedor = document.getElementById("tx-main");
+
+        if (!contenedor) return;
+
+        contenedor.innerHTML = `
+            <h2>Acciones</h2>
+
+            <div id="acciones-resumen"></div>
+
+            <div id="acciones-tabla"></div>
+        `;
+
+    }
+
+    return {
+        mostrar
+    };
+
+})();

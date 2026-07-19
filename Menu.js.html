@@ -1,0 +1,20 @@
+const Menu = (() => {
+
+    function cargar() {
+
+        return Sidebar.construir();
+
+    }
+
+    function seleccionar(id) {
+
+        Debug.log("Menú:", id);
+
+    }
+
+    return {
+        cargar,
+        seleccionar
+    };
+
+})();

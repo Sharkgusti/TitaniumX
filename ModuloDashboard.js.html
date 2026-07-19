@@ -1,0 +1,24 @@
+const ModuloDashboard = (() => {
+
+    async function mostrar() {
+
+        const contenedor = document.getElementById("tx-main");
+
+        if (!contenedor) return;
+
+        contenedor.innerHTML = `
+            <h1>🏟️ La Bombonera</h1>
+            <h3>Centro de Control de Titanium X</h3>
+
+            <div id="dashboard-kpis"></div>
+            <div id="dashboard-graficos"></div>
+            <div id="dashboard-alertas"></div>
+        `;
+
+    }
+
+    return {
+        mostrar
+    };
+
+})();

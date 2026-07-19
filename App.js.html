@@ -1,0 +1,66 @@
+const App = (() => {
+
+    let iniciada = false;
+
+    async function iniciar() {
+
+        if (iniciada) return;
+
+        iniciada = true;
+
+        try {
+
+            Debug.log("=================================");
+            Debug.log(APP.NOMBRE);
+            Debug.log("Versión:", APP.VERSION);
+            Debug.log("Iniciando aplicación...");
+            Debug.log("=================================");
+
+            UI.loading(true);
+
+            // Inicializar Titanium X
+            await Api.llamar("apiInicializar");
+
+            // Construir estructura principal
+            Layout.render();
+
+            // Inicializar módulos
+            Eventos.iniciar();
+
+            // Registrar rutas
+            Router.registrar("dashboard", ModuloDashboard.mostrar);
+            Router.registrar("cartera", ModuloCartera.mostrar);
+            Router.registrar("operaciones", ModuloOperaciones.mostrar);
+            Router.registrar("bonos", ModuloBonos.mostrar);
+            Router.registrar("cedears", ModuloCedears.mostrar);
+            Router.registrar("etf", ModuloETF.mostrar);
+            Router.registrar("acciones", ModuloAcciones.mostrar);
+            Router.registrar("reportes", ModuloReportes.mostrar);
+            Router.registrar("configuracion", ModuloConfiguracion.mostrar);
+
+            // Mostrar Dashboard
+            await ModuloDashboard.mostrar();
+
+            Debug.log("Aplicación iniciada correctamente.");
+
+        } catch (error) {
+
+            console.error(error);
+
+            UI.toast("Error al iniciar Titanium X", "error");
+
+        } finally {
+
+            UI.loading(false);
+
+        }
+
+    }
+
+    return {
+
+        iniciar
+
+    };
+
+})();

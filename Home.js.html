@@ -1,0 +1,17 @@
+const Home = (() => {
+
+    function iniciar() {
+
+        Debug.log("Home iniciado");
+
+        UI.titulo(APP.NOMBRE);
+
+        Dashboard.iniciar();
+
+    }
+
+    return {
+        iniciar
+    };
+
+})();

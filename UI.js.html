@@ -1,0 +1,39 @@
+const UI = (() => {
+
+  function toast(msg, tipo = "info") {
+    console.log(`[${tipo}] ${msg}`);
+  }
+
+  function loading(on = true) {
+    const el = document.getElementById("loading");
+    if (!el) return;
+    el.style.display = on ? "flex" : "none";
+  }
+
+  function titulo(texto) {
+    document.title = texto;
+  }
+
+  function formatoUSD(valor) {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD"
+    }).format(valor);
+  }
+
+  function formatoARS(valor) {
+    return new Intl.NumberFormat("es-AR", {
+      style: "currency",
+      currency: "ARS"
+    }).format(valor);
+  }
+
+  return {
+    toast,
+    loading,
+    titulo,
+    formatoUSD,
+    formatoARS
+  };
+
+})();

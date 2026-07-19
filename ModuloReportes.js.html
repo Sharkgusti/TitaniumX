@@ -1,0 +1,23 @@
+const ModuloReportes = (() => {
+
+    async function mostrar() {
+
+        const contenedor = document.getElementById("tx-main");
+
+        if (!contenedor) return;
+
+        contenedor.innerHTML = `
+            <h2>Reportes</h2>
+
+            <div id="reportes-panel"></div>
+
+            <div id="reportes-graficos"></div>
+        `;
+
+    }
+
+    return {
+        mostrar
+    };
+
+})();

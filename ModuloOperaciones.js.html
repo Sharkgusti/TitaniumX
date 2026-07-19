@@ -1,0 +1,24 @@
+const ModuloOperaciones = (() => {
+
+    async function mostrar() {
+
+        const contenedor = document.getElementById("tx-main");
+
+        if (!contenedor) return;
+
+        contenedor.innerHTML = `
+            <h2>Operaciones</h2>
+
+            <div id="tabla-operaciones"></div>
+
+        `;
+
+    }
+
+    return {
+
+        mostrar
+
+    };
+
+})();

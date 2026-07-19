@@ -1,0 +1,22 @@
+const Header = (() => {
+
+    function titulo() {
+
+        return APP.NOMBRE + " - " + APP.VERSION;
+
+    }
+
+    function usuario() {
+
+        return APP.AUTOR;
+
+    }
+
+    return{
+
+        titulo,
+        usuario
+
+    };
+
+})();

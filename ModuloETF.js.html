@@ -1,0 +1,23 @@
+const ModuloETF = (() => {
+
+    async function mostrar() {
+
+        const contenedor = document.getElementById("tx-main");
+
+        if (!contenedor) return;
+
+        contenedor.innerHTML = `
+            <h2>ETF</h2>
+
+            <div id="etf-resumen"></div>
+
+            <div id="etf-tabla"></div>
+        `;
+
+    }
+
+    return {
+        mostrar
+    };
+
+})();
