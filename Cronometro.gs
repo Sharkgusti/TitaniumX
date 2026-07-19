@@ -5,25 +5,25 @@
  *
  ******************************************************************/
 
-const CRONOMETRO = {};
-
-CRONOMETRO.inicios = {};
+const CRONOMETRO = {
+  inicios: {}
+};
 
 function iniciarCronometro(nombre) {
 
-  CRONOMETRO.inicios[nombre] = new Date().getTime();
+  CRONOMETRO.inicios[nombre] = Date.now();
 
 }
 
 function detenerCronometro(nombre) {
 
-  if (!CRONOMETRO.inicios[nombre]) return 0;
+  if (!(nombre in CRONOMETRO.inicios)) return 0;
 
-  const tiempo = new Date().getTime() - CRONOMETRO.inicios[nombre];
+  const tiempo = Date.now() - CRONOMETRO.inicios[nombre];
 
   delete CRONOMETRO.inicios[nombre];
 
-  logInfo("CRONO", nombre + " : " + tiempo + " ms");
+  logInfo("CRONO", `${nombre} : ${tiempo} ms`);
 
   return tiempo;
 
@@ -33,10 +33,14 @@ function medir(nombre, funcion) {
 
   iniciarCronometro(nombre);
 
-  const resultado = funcion();
+  try {
 
-  detenerCronometro(nombre);
+    return funcion();
 
-  return resultado;
+  } finally {
+
+    detenerCronometro(nombre);
+
+  }
 
 }
