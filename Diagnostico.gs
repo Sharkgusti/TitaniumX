@@ -29,7 +29,11 @@ function diagnosticoSistema() {
 
     fecha: new Date(),
 
-    modulos: Object.keys(estado.modulos)
+    modulos: Object.keys(estado.modulos).sort(),
+
+    memoria: Session.getTemporaryActiveUserKey
+      ? "OK"
+      : "N/D"
 
   };
 
@@ -37,9 +41,13 @@ function diagnosticoSistema() {
 
 function imprimirDiagnostico() {
 
+  const diag = diagnosticoSistema();
+
   logInfo(
     "DIAGNOSTICO",
-    JSON.stringify(diagnosticoSistema())
+    JSON.stringify(diag, null, 2)
   );
+
+  return diag;
 
 }
