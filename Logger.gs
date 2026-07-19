@@ -18,21 +18,15 @@ const LOGGER = {
 };
 
 function logInfo(modulo, mensaje) {
-
   registrarLog("INFO", modulo, mensaje);
-
 }
 
 function logWarn(modulo, mensaje) {
-
   registrarLog("WARN", modulo, mensaje);
-
 }
 
 function logError(modulo, mensaje) {
-
   registrarLog("ERROR", modulo, mensaje);
-
 }
 
 function registrarLog(nivel, modulo, mensaje) {
@@ -47,7 +41,7 @@ function registrarLog(nivel, modulo, mensaje) {
 
     modulo,
 
-    mensaje: String(mensaje)
+    mensaje
 
   };
 
@@ -57,23 +51,11 @@ function registrarLog(nivel, modulo, mensaje) {
     LOGGER.historial.shift();
   }
 
-  const texto =
-    "[" +
-    Utilities.formatDate(
-      registro.fecha,
-      Session.getScriptTimeZone(),
-      "yyyy-MM-dd HH:mm:ss"
-    ) +
-    "] [" +
-    nivel +
-    "] [" +
-    modulo +
-    "] " +
-    registro.mensaje;
-
   if (LOGGER.mostrarConsola) {
 
-    console.log(texto);
+    console.log(
+      `[${nivel}] [${modulo}] ${mensaje}`
+    );
 
   }
 
