@@ -12,16 +12,17 @@ function cacheGuardar(clave, valor, minutos = 10) {
   try {
 
     CACHE.put(
-      clave,
+      String(clave),
       JSON.stringify(valor),
-      minutos * 60
+      Math.max(1, minutos) * 60
     );
 
     return true;
 
   } catch (e) {
 
-    logError("CACHE", e.toString());
+    logError("CACHE", e.stack || e.toString());
+
     return false;
 
   }
@@ -32,13 +33,15 @@ function cacheLeer(clave) {
 
   try {
 
-    const dato = CACHE.get(clave);
+    const dato = CACHE.get(String(clave));
 
-    if (!dato) return null;
+    if (dato === null) return null;
 
     return JSON.parse(dato);
 
   } catch (e) {
+
+    logError("CACHE", e.stack || e.toString());
 
     return null;
 
@@ -48,20 +51,31 @@ function cacheLeer(clave) {
 
 function cacheEliminar(clave) {
 
-  CACHE.remove(clave);
+  try {
+
+    CACHE.remove(String(clave));
+
+    return true;
+
+  } catch (e) {
+
+    logError("CACHE", e.stack || e.toString());
+
+    return false;
+
+  }
 
 }
 
 function cacheExiste(clave) {
 
-  return CACHE.get(clave) !== null;
+  return CACHE.get(String(clave)) !== null;
 
 }
 
 function cacheLimpiar() {
 
-  // Apps Script no permite vaciar todo el ScriptCache.
-  // Se deja preparado para futuras versiones.
+  // Apps Script no permite vaciar completamente ScriptCache.
 
   logInfo("CACHE", "Limpieza solicitada");
 
