@@ -36,6 +36,7 @@ function iniciarSistema() {
 
 function finalizarProceso(nombre) {
 
+  ESTADO.cargando = false;
   ESTADO.ultimoProceso = nombre;
   ESTADO.ultimaActualizacion = new Date();
 
@@ -61,15 +62,21 @@ function terminarProceso(nombre) {
 
 }
 
-function registrarError() {
+function registrarError(error = null) {
 
   ESTADO.errores++;
+  ESTADO.ultimaActualizacion = new Date();
+
+  if (error) {
+    logError("SISTEMA", error.stack || error.toString());
+  }
 
 }
 
 function registrarAdvertencia() {
 
   ESTADO.advertencias++;
+  ESTADO.ultimaActualizacion = new Date();
 
 }
 
@@ -87,6 +94,12 @@ function moduloActivo(nombre) {
 
 function estadoActual() {
 
-  return ESTADO;
+  return {
+
+    ...ESTADO,
+
+    modulos: { ...ESTADO.modulos }
+
+  };
 
 }
